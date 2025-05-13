@@ -27,9 +27,9 @@ const MIN_INTERVAL = 5000;
     setNewRequestLoading(true);
     setPrompt("");
     try {
-      const response = await axios({
-        url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyB7AYQghVvpWb5bbilLDA1_DAe_PVi4U4M",
-        method: "post",
+     const response = await axios({
+  url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyARh1X_awaO44ugXAPdbmBGEJrWMYGV8uk",
+  method: "post",
         data: {
           contents: [{ parts: [{ text: currentPrompt  }] }],
         },
@@ -44,8 +44,7 @@ const MIN_INTERVAL = 5000;
       setMessages((prev) => [...prev, message]);
       setNewRequestLoading(false);
 
-      const { data } = await axios.post(
-        `${server}/api/chat/${selected}`,
+      const { data } = await axios.post(`${server}/api/chat/${selected}`,
         {
           question: prompt,
           answer:
@@ -53,7 +52,7 @@ const MIN_INTERVAL = 5000;
         },
         {
           headers: {
-  Authorization: `Bearer ${localStorage.getItem("token")}`,
+  token: localStorage.getItem("token"),
 },
         }
       );
